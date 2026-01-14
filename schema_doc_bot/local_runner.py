@@ -1,4 +1,4 @@
-"""Local runner for testing Schema Doc-Bot on local Avro files."""
+"""Local runner for testing Schema Documentation Agent on local Avro files."""
 
 from __future__ import annotations
 
@@ -27,7 +27,7 @@ def run_local(
     output_dir: Path | None = None,
 ) -> None:
     """
-    Run Schema Doc-Bot on local Avro schema files.
+    Run Schema Documentation Agent on local Avro schema files.
 
     Args:
         schema_paths: List of paths to .avsc files or directories
@@ -39,7 +39,7 @@ def run_local(
     """
     console.print(
         Panel.fit(
-            "[bold cyan]🤖 Schema Doc-Bot (Local Mode)[/bold cyan]\n"
+            "[bold cyan]🤖 Schema Documentation Agent (Local Mode)[/bold cyan]\n"
             "Documenting local Avro schema files",
             border_style="cyan",
         )

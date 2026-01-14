@@ -297,9 +297,15 @@ ollama pull llama3.2
 
 ### Protobuf
 ```protobuf
+// Note: Schema Registry strips comments, so use options instead
+import "google/protobuf/descriptor.proto";
+
+extend google.protobuf.FieldOptions {
+  optional string description = 50000;
+}
+
 message UserEvent {
-  // ← Generated comment
-  string user_id = 1;
+  string user_id = 1 [(description) = "← Generated via option"];
 }
 ```
 

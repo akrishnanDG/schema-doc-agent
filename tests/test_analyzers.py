@@ -396,13 +396,13 @@ class TestProtobufAnalyzer:
         assert result.total_elements >= 1  # At least the message
         assert len(result.missing_docs) >= 1
 
-    def test_analyze_message_with_comments(self):
-        """Test analyzing a message with comments."""
+    def test_analyze_message_with_options(self):
+        """Test analyzing a message with documentation options."""
+        # Note: Schema Registry strips comments, so docs must use options
         schema = """
-        // A user message
         message User {
-            // The user's unique identifier
-            string id = 1;
+            option (description) = "A user message";
+            string id = 1 [(description) = "The user's unique identifier"];
             string email = 2;
         }
         """
@@ -410,8 +410,10 @@ class TestProtobufAnalyzer:
         analyzer = ProtobufAnalyzer()
         result = analyzer.analyze_schema("test-subject", schema)
         
-        # Should have fewer missing docs due to comments
+        # Should have fewer missing docs due to options
         assert result.documented_elements >= 1
+        # email should still be missing doc
+        assert any(d.name == "email" for d in result.missing_docs)
 
     def test_analyze_nested_message(self):
         """Test analyzing a message with nested message."""

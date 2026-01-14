@@ -1,4 +1,4 @@
-"""Configuration management for Schema Doc-Bot."""
+"""Configuration management for Schema Documentation Agent."""
 
 from __future__ import annotations
 
@@ -151,7 +151,7 @@ def load_config(config_path: Path | None = None) -> Config:
         for candidate in [
             Path("schema-doc-bot.yaml"),
             Path("schema-doc-bot.yml"),
-            Path.home() / ".config" / "schema-doc-bot" / "config.yaml",
+            Path.home() / ".config" / "schema-doc-agent" / "config.yaml",
             Path.home() / ".schema-doc-bot.yaml",
         ]:
             if candidate.exists():
@@ -327,7 +327,7 @@ def save_config(config: Config, path: Path) -> None:
 
 def generate_sample_config() -> str:
     """Generate a sample configuration file."""
-    return '''# Schema Doc-Bot Configuration
+    return '''# Schema Documentation Agent Configuration
 # Copy this to schema-doc-bot.yaml and customize
 
 schema_registry:

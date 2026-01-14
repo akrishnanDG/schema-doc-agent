@@ -120,7 +120,7 @@ def run(
     base_branch: str | None,
     dry_run: bool,
 ):
-    """Run Schema Doc-Bot: pull from registry, generate docs, create PR."""
+    """Run Schema Documentation Agent: pull from registry, generate docs, create PR."""
     config: Config = ctx.obj["config"]
     
     # Apply CLI overrides
@@ -184,7 +184,7 @@ def run_from_repo(
     base_branch: str | None,
     dry_run: bool,
 ):
-    """Run Schema Doc-Bot directly on schemas in a GitHub repository."""
+    """Run Schema Documentation Agent directly on schemas in a GitHub repository."""
     config: Config = ctx.obj["config"]
     
     # Apply CLI overrides
@@ -321,7 +321,7 @@ def local(
         config.llm.min_confidence = min_confidence  # type: ignore
 
     if not paths:
-        console.print("[yellow]No paths specified. Usage: schema-doc-bot local path/to/schemas[/yellow]")
+        console.print("[yellow]No paths specified. Usage: schema-doc-agent local path/to/schemas[/yellow]")
         return
 
     # Get the provider config
@@ -627,7 +627,7 @@ def _run_from_github(config: Config, model_override: str | None = None) -> None:
     """Run from GitHub repository directly."""
     console.print(
         Panel.fit(
-            "[bold cyan]🤖 Schema Doc-Bot (Repository Mode)[/bold cyan]\n"
+            "[bold cyan]🤖 Schema Documentation Agent (Repository Mode)[/bold cyan]\n"
             "Documenting schemas directly from GitHub",
             border_style="cyan",
         )
