@@ -1,0 +1,20 @@
+# Schema Documentation Agent - Dependencies
+
+# Core
+requests>=2.31.0
+pyyaml>=6.0.1
+
+# LLM Clients
+openai>=1.12.0           # OpenAI & Azure OpenAI
+anthropic>=0.18.0        # Claude models
+google-generativeai>=0.4.0  # Google Gemini
+mistralai>=0.1.0         # Mistral AI
+ollama>=0.1.0            # Local models via Ollama
+
+# GitHub Integration
+PyGithub>=2.1.0
+
+# CLI & Utils
+python-dotenv>=1.0.0
+click>=8.1.7
+rich>=13.7.0

@@ -1,0 +1,88 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "schema-doc-agent"
+version = "2.0.0"
+description = "Autonomous AI agent for documenting Avro, JSON Schema, and Protobuf schemas"
+readme = "README.md"
+requires-python = ">=3.9"
+license = {text = "MIT"}
+authors = [
+    {name = "Schema Documentation Agent"}
+]
+keywords = ["schema", "documentation", "avro", "protobuf", "json-schema", "ai", "agent", "llm"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Documentation",
+    "Topic :: Software Development :: Code Generators",
+]
+dependencies = [
+    "requests>=2.31.0",
+    "pyyaml>=6.0.1",
+    "openai>=1.12.0",
+    "anthropic>=0.18.0",
+    "google-generativeai>=0.4.0",
+    "mistralai>=0.1.0",
+    "ollama>=0.1.0",
+    "PyGithub>=2.1.0",
+    "python-dotenv>=1.0.0",
+    "click>=8.1.7",
+    "rich>=13.7.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4.0",
+    "pytest-cov>=4.1.0",
+    "pytest-asyncio>=0.21.0",
+    "mypy>=1.8.0",
+    "ruff>=0.1.0",
+    "types-requests>=2.31.0",
+    "types-PyYAML>=6.0.0",
+]
+
+[project.scripts]
+schema-doc-agent = "schema_doc_bot.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/schema-doc-agent/schema-doc-agent"
+Repository = "https://github.com/schema-doc-agent/schema-doc-agent"
+Documentation = "https://github.com/schema-doc-agent/schema-doc-agent#readme"
+Issues = "https://github.com/schema-doc-agent/schema-doc-agent/issues"
+
+[tool.setuptools.packages.find]
+include = ["schema_doc_bot*"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py39"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "W", "UP", "B", "C4", "SIM"]
+ignore = ["E501"]
+
+[tool.mypy]
+python_version = "3.9"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+addopts = "-v --tb=short"
+markers = [
+    "integration: marks tests as integration tests (require network/external services)",
+]

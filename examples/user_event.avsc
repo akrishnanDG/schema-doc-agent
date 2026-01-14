@@ -1,0 +1,47 @@
+{
+  "type": "record",
+  "name": "UserEvent",
+  "namespace": "com.example.events",
+  "fields": [
+    {
+      "name": "user_id",
+      "type": "string"
+    },
+    {
+      "name": "event_type",
+      "type": {
+        "type": "enum",
+        "name": "EventType",
+        "symbols": ["LOGIN", "LOGOUT", "SIGNUP", "PASSWORD_RESET"]
+      }
+    },
+    {
+      "name": "timestamp",
+      "type": "long"
+    },
+    {
+      "name": "metadata",
+      "type": {
+        "type": "map",
+        "values": "string"
+      },
+      "default": {}
+    },
+    {
+      "name": "ip_address",
+      "type": ["null", "string"],
+      "default": null
+    },
+    {
+      "name": "user_agent",
+      "type": ["null", "string"],
+      "default": null
+    },
+    {
+      "name": "session_id",
+      "type": ["null", "string"],
+      "default": null
+    }
+  ]
+}
+
