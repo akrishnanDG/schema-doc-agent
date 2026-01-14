@@ -47,7 +47,7 @@ The Schema Documentation Agent connects to your Confluent Schema Registry, ident
 
 ```bash
 # Clone the repository
-git clone https://github.com/your-org/schema-doc-agent.git
+git clone https://github.com/akrishnanDG/schema-doc-agent.git
 cd schema-doc-agent
 
 # Install dependencies
