@@ -56,10 +56,10 @@ dev = [
 schema-doc-agent = "schema_doc_bot.cli:main"
 
 [project.urls]
-Homepage = "https://github.com/schema-doc-agent/schema-doc-agent"
-Repository = "https://github.com/schema-doc-agent/schema-doc-agent"
-Documentation = "https://github.com/schema-doc-agent/schema-doc-agent#readme"
-Issues = "https://github.com/schema-doc-agent/schema-doc-agent/issues"
+Homepage = "https://github.com/akrishnanDG/schema-doc-agent"
+Repository = "https://github.com/akrishnanDG/schema-doc-agent"
+Documentation = "https://github.com/akrishnanDG/schema-doc-agent#readme"
+Issues = "https://github.com/akrishnanDG/schema-doc-agent/issues"
 
 [tool.setuptools.packages.find]
 include = ["schema_doc_bot*"]

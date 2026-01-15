@@ -403,7 +403,7 @@ jobs:
           python-version: '3.11'
       
       - name: Install Schema Documentation Agent
-        run: pip install git+https://github.com/YOUR_ORG/schema-doc-bot.git
+        run: pip install git+https://github.com/akrishnanDG/schema-doc-agent.git
       
       - name: Run agent
         env:
@@ -432,7 +432,7 @@ docker run --rm \
   -e SCHEMA_REGISTRY_USER="$SCHEMA_REGISTRY_USER" \
   -e SCHEMA_REGISTRY_PASSWORD="$SCHEMA_REGISTRY_PASSWORD" \
   -e OPENAI_API_KEY="$OPENAI_API_KEY" \
-  your-org/schema-doc-agent agent -p openai --dry-run
+  akrishnandg/schema-doc-agent agent -p openai --dry-run
 ```
 
 ## Troubleshooting

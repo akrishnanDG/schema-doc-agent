@@ -33,7 +33,7 @@ jobs:
       
       - name: Install Schema Documentation Agent
         run: |
-          pip install git+https://github.com/YOUR_ORG/schema-doc-bot.git
+          pip install git+https://github.com/akrishnanDG/schema-doc-agent.git
       
       - name: Run documentation agent
         env:
