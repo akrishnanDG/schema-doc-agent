@@ -1,0 +1,51 @@
+# Example GitHub Actions workflow for using Schema Documentation Agent
+# Copy this file to your schema repository: .github/workflows/schema-docs.yml
+
+name: Schema Documentation
+
+on:
+  # Option 1: Run when schemas change
+  pull_request:
+    paths:
+      - 'schemas/**'
+      - '**/*.avsc'
+      - '**/*.proto'
+  
+  # Option 2: Run on schedule
+  schedule:
+    - cron: '0 9 * * 1'  # Weekly on Monday
+  
+  # Option 3: Run manually
+  workflow_dispatch:
+
+jobs:
+  document-schemas:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      
+      - name: Install Schema Documentation Agent
+        run: |
+          pip install git+https://github.com/YOUR_ORG/schema-doc-bot.git
+      
+      - name: Run documentation agent
+        env:
+          SCHEMA_REGISTRY_URL: ${{ secrets.SCHEMA_REGISTRY_URL }}
+          SCHEMA_REGISTRY_USER: ${{ secrets.SCHEMA_REGISTRY_USER }}
+          SCHEMA_REGISTRY_PASSWORD: ${{ secrets.SCHEMA_REGISTRY_PASSWORD }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPO: ${{ github.repository }}
+        run: |
+          schema-doc-agent agent -p openai --dry-run
+          
+          # Remove --dry-run to create actual PRs:
+          # schema-doc-agent agent -p openai
+

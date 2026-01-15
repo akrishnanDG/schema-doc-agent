@@ -378,6 +378,63 @@ PR includes:
 - Confidence levels for each
 - Full updated schema files
 
+## CI/CD Integration
+
+### GitHub Actions
+
+Add this workflow to your **schema repository** at `.github/workflows/schema-docs.yml`:
+
+```yaml
+name: Schema Documentation
+
+on:
+  pull_request:
+    paths: ['schemas/**', '**/*.avsc', '**/*.proto']
+  workflow_dispatch:
+
+jobs:
+  document-schemas:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      
+      - name: Install Schema Documentation Agent
+        run: pip install git+https://github.com/YOUR_ORG/schema-doc-bot.git
+      
+      - name: Run agent
+        env:
+          SCHEMA_REGISTRY_URL: ${{ secrets.SCHEMA_REGISTRY_URL }}
+          SCHEMA_REGISTRY_USER: ${{ secrets.SCHEMA_REGISTRY_USER }}
+          SCHEMA_REGISTRY_PASSWORD: ${{ secrets.SCHEMA_REGISTRY_PASSWORD }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPO: ${{ github.repository }}
+        run: schema-doc-agent agent -p openai --dry-run
+```
+
+**Required Secrets** (add in repo Settings → Secrets):
+| Secret | Description |
+|--------|-------------|
+| `SCHEMA_REGISTRY_URL` | Confluent Schema Registry URL |
+| `SCHEMA_REGISTRY_USER` | API key |
+| `SCHEMA_REGISTRY_PASSWORD` | API secret |
+| `OPENAI_API_KEY` | OpenAI API key (or use another provider) |
+
+### Docker
+
+```bash
+docker run --rm \
+  -e SCHEMA_REGISTRY_URL="$SCHEMA_REGISTRY_URL" \
+  -e SCHEMA_REGISTRY_USER="$SCHEMA_REGISTRY_USER" \
+  -e SCHEMA_REGISTRY_PASSWORD="$SCHEMA_REGISTRY_PASSWORD" \
+  -e OPENAI_API_KEY="$OPENAI_API_KEY" \
+  your-org/schema-doc-agent agent -p openai --dry-run
+```
+
 ## Troubleshooting
 
 ### Connection Issues
