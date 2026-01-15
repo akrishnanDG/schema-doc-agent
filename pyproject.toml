@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "schema-doc-agent"
-version = "2.0.0"
+version = "1.0.0"
 description = "Autonomous AI agent for documenting Avro, JSON Schema, and Protobuf schemas"
 readme = "README.md"
 requires-python = ">=3.9"

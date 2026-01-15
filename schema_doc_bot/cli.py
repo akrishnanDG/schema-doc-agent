@@ -33,7 +33,7 @@ console = Console()
 
 
 @click.group()
-@click.version_option(version="2.0.0")
+@click.version_option(version="1.0.0")
 @click.option(
     "--config",
     "-c",
